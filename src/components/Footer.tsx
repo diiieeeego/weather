@@ -1,6 +1,5 @@
 
 import { Cloud, Sun } from 'lucide-react';
-import { Code } from 'lucide-react';
 import Image from 'next/image';
 export default function Footer(){
   return (
