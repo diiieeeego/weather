@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WeatherCard from "@/components/WeatherCard";
 import WeatherDetails from "@/components/WeatherDetails";
 import ForecastList from "@/components/ForecastList";
 import { getWeatherData } from "@/utils/getWeather";
 import { getForecastData } from "@/utils/getForecastData";
+import { Search } from "lucide-react";
 
 interface WeatherData {
   name: string;
@@ -42,7 +43,7 @@ interface ForecastListProps {
 }
 
 export default function HomePage() {
-  const [city, setCity] = useState("London");
+  const [city, setCity] = useState("Zadar");
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [forecast, setForecast] = useState<ForecastListProps | null>(null);
 
@@ -56,10 +57,13 @@ export default function HomePage() {
       console.error(err);
     }
   };
+  useEffect(() => {
+    fetchWeather(); // Call fetchWeather when the page loads
+  }, []);
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-gradient-to-br from-sky-500 to-indigo-600 p-6">
-      <div className="text-center mb-8">
+    <main className="min-h-screen flex flex-col items-center bg-gradient-to-br from-sky-500 to-indigo-600 p-6 gap-8">
+      <div className="text-center my-8">
         <h1 className="text-5xl font-bold text-white drop-shadow-md">
           Weather Explorer
         </h1>
@@ -69,13 +73,22 @@ export default function HomePage() {
           details.
         </p>
       </div>
-      <input
-        className="mb-4 px-4 py-2 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder-white/80"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && fetchWeather()}
-        placeholder="Enter city"
-      />
+      <div className="relative w-full sm:w-1/3 mb-4">
+        <input
+          className="w-full px-4 py-2 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder-white/80"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && fetchWeather()}
+          placeholder="Enter city"
+        />
+        <button
+          className="absolute top-1/2 transform -translate-y-1/2 right-3 text-white"
+          onClick={fetchWeather}
+          aria-label="Search"
+        >
+          <Search className="w-5 h-5 cursor-pointer" />
+        </button>
+      </div>
 
       {weather && (
         <>
