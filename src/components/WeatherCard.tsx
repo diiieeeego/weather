@@ -22,7 +22,7 @@ export default function WeatherCard({ city, temp, weather }: Props) {
       <h2 className="text-xl font-semibold mb-2">{city}</h2>
       <div className="flex items-center justify-between">
         <div className="text-5xl font-bold">{Math.round(temp)}°C</div>
-        <div>{getIcon(weather)}</div>
+        <div className={`${weather==="Clear" ? 'text-yellow-500':'text-neutral-50'}`}>{getIcon(weather)}</div>
       </div>
       <p className="text-sm mt-2">{weather}</p>
     </div>

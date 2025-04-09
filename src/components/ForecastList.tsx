@@ -26,13 +26,13 @@ export default function ForecastList({ list }: Props) {
 
   return (
     <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-2xl p-4 text-white w-full max-w-4xl mx-auto mt-6">
-      <h3 className="text-lg font-semibold mb-4">5-Day Forecast</h3>
+      <h3 className="text-lg font-semibold mb-4 text-center">5-Day Forecast</h3>
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
         {daily.map((item) => {
           const date = new Date(item.dt * 1000);
           const day = date.toLocaleDateString(undefined, { weekday: "short" });
           return (
-            <div key={item.dt} className="flex flex-col items-center gap-1">
+            <div key={item.dt} className="flex flex-col items-center gap-1 p-4 rounded-lg shadow-md cursor-pointer">
               <p className="text-sm">{day}</p>
               {getIcon(item.weather[0].main)}
               <p className="text-sm">{Math.round(item.main.temp)}°C</p>

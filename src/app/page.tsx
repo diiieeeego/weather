@@ -62,7 +62,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-gradient-to-br from-sky-500 to-indigo-600 p-6 gap-8">
+    <main className="min-h-screen flex flex-col items-center bg-gradient-to-br from-sky-500 to-indigo-600 p-6 gap-8 py-16">
       <div className="text-center my-8">
         <h1 className="text-5xl font-bold text-white drop-shadow-md">
           Weather Explorer
@@ -106,6 +106,7 @@ export default function HomePage() {
       )}
 
       {forecast && <ForecastList list={forecast.list} />}
+      
     </main>
   );
 }
